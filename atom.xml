@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-27T06:08:01.712Z</updated>
+  <updated>2020-02-27T06:27:47.448Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -21,9 +21,16 @@
     <link href="https://liudong-code.github.io/2020/02/27/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>https://liudong-code.github.io/2020/02/27/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
     <published>2020-02-27T06:06:01.000Z</published>
-    <updated>2020-02-27T06:08:01.712Z</updated>
+    <updated>2020-02-27T06:27:47.448Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span></span><br></pre></td></tr></table></figure><p>​        抽象类必须用abstract 修饰，子类必须实现抽象类中的抽象方法，如果有方法尉氏县，那么子类的该方法也要用abstract 修饰。</p><p>​        默认的权限修饰符是：public，也可以是procted.如果是private的话，子类无法继承。</p><p>​        抽象类无法创建对象。</p><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span></span></span><br></pre></td></tr></table></figure><p>​        接口中的变量隐式的使用Public static final 修饰，也要给出初始值</p><p>​        接口中的方法隐式的使用public abstract 修饰，只能是public  修饰。</p><p>​        接口中的方法默认的不能有实现（JDK1.8可以有默认实现）。</p><h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ol><li>抽象类只能继承一次，但是可以有多个接口。</li><li>继承于抽象类或者接口的类，必须实现其中的所有方法，抽象类中的为实现的抽象方法，子类也需要定义为抽象类。</li><li>抽象类可以有非抽象方法。</li><li>接口的变量必须由public static final 修饰，并给出初始值，所以其实现类不能重新定义，也不能改变其值。</li><li>接口的方法默认是public abstract ，不能是static，抽象类中可以有static方法。</li><li>接口的方法也不允许子类覆写。</li></ol>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
+      
     
     </summary>
     
