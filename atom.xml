@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-27T03:48:36.587Z</updated>
+  <updated>2020-02-27T05:34:38.327Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>int与Integer的区别</title>
+    <link href="https://liudong-code.github.io/2020/02/27/int%E4%B8%8EInteger%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://liudong-code.github.io/2020/02/27/int%E4%B8%8EInteger%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2020-02-27T05:13:32.000Z</published>
+    <updated>2020-02-27T05:34:38.327Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> 是java的基本数据类型。</span><br></pre></td></tr></table></figure><h3 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer 继承了Object类，是对象类型，是 <span class="keyword">int</span> 的包装类。</span><br></pre></td></tr></table></figure><h2 id="int-与-Integer-的区别"><a href="#int-与-Integer-的区别" class="headerlink" title="int 与 Integer 的区别"></a>int 与 Integer 的区别</h2><h5 id="1-值的储存"><a href="#1-值的储存" class="headerlink" title="1,值的储存"></a>1,值的储存</h5><p>​        int储存在栈中</p><p>​        Integer对象的引用储存在栈中，对象的数据储存在堆中。</p><h5 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2,初始化"></a>2,初始化</h5><p>​        int初始值是0</p><p>​        Integer的初始值是null</p><h5 id="3-传参"><a href="#3-传参" class="headerlink" title="3,传参"></a>3,传参</h5><p>​        int是值传递</p><p>​        Integer是引用传递，引用不可改变但是引用指向堆空间地址的值是可以改变的。</p><h5 id="4-泛型支持"><a href="#4-泛型支持" class="headerlink" title="4,泛型支持"></a>4,泛型支持</h5><p>​        泛型不支持int，但是支持Integer。</p><h5 id="5-运算"><a href="#5-运算" class="headerlink" title="5,运算"></a>5,运算</h5><p>​        int 可以直接做运算，是类的特性。<br>​        Integer 的对象可以调用该类的方法，但是在拆箱之前不能进行运算，需要转化为基本类型int。</p><h4 id="相同值下的-int-和-Integer-的比较结果"><a href="#相同值下的-int-和-Integer-的比较结果" class="headerlink" title="相同值下的 int 和 Integer 的比较结果"></a>相同值下的 int 和 Integer 的比较结果</h4><p>​    1,两个通过new生成的变量，结果为false。<br>​    2,int 和 Integer 的值比较，若两者的值相等，则为true。<br>​        （注意：在比较时，Integer会自动拆箱为int类型，然后再做比较。）<br>​    3,new 生成的Integer变量 和 非new 生成的Integer变量比较，，结果为false。<br>​        （注意：new 生成的Integer变量的值在堆空间中，非new 生成的Integer变量的值在在常量池中。）<br>​        （注意：非new生成的Integer变量，会先判断常量池中是否有该对象，若有则共享，若无则在常量池中放入            该对象；也叫享元模式，后面再说。）<br>​    4,两个非new 生成的Integer对象比较，则结果为true。<br>​        （注意：此处需要一个前提：值的范围在 -128 ~ 127 之间。<br>​        涉及到java对 int 与 Integer 的自动装箱和拆箱的一种模式：享元模式—flyweight，为了加强对简单数字的重        复利用。<br>​        在赋值时，其实是执行了Integer的valueOf()方法。<br>​        当值在 -128 ~ 127之间时，java会进行自动装箱，然后会对值进行缓存，如果下次再有相同的值，会直接在        缓存中取出使用。缓存是通过Integer的内部类IntegerCache来完成的。<br>​        当值超出此范围，会在堆中new出一个对象来存储。<br>​        PS：自动装箱与拆箱是在JDK1.5中出现的。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">int</span> a =<span class="number">12</span>;</span><br><span class="line">         Integer b =<span class="number">12</span>;</span><br><span class="line">         Integer c = <span class="keyword">new</span> Integer(<span class="number">12</span>);</span><br><span class="line"></span><br><span class="line">         Integer d=<span class="number">128</span>;</span><br><span class="line">         Integer e=<span class="number">128</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(a==b);</span><br><span class="line">        System.out.println(b==c);</span><br><span class="line">        System.out.println(d==e);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure><p>​    5,内部类IntegerCache<br>​        通过此类可以缓存简单数字。<br>​        缓存的数大小可以由 -XX：AutoBoxCacheMax = 控制。<br>​        jvm初始化时，java.lang.Integer.Integ</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;int&quot;&gt;&lt;a href=&quot;#int&quot; class=&quot;headerlink&quot; title=&quot;int&quot;&gt;&lt;/a&gt;int&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Java知识点梳理</title>
