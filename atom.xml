@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-27T15:44:22.593Z</updated>
+  <updated>2020-02-28T02:20:04.626Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -17,17 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>博客测试</title>
-    <link href="https://liudong-code.github.io/2020/02/27/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/"/>
-    <id>https://liudong-code.github.io/2020/02/27/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/</id>
-    <published>2020-02-27T15:44:22.000Z</published>
-    <updated>2020-02-27T15:44:22.593Z</updated>
+    <title>PIO和DMA</title>
+    <link href="https://liudong-code.github.io/2020/02/28/PIO%E5%92%8CDMA/"/>
+    <id>https://liudong-code.github.io/2020/02/28/PIO%E5%92%8CDMA/</id>
+    <published>2020-02-28T02:09:06.000Z</published>
+    <updated>2020-02-28T02:20:04.626Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="慢速IO设备和内存之间的数据传输方式有下面两种："><a href="#慢速IO设备和内存之间的数据传输方式有下面两种：" class="headerlink" title="慢速IO设备和内存之间的数据传输方式有下面两种："></a>慢速IO设备和内存之间的数据传输方式有下面两种：</h4><ul><li>PIO：磁盘和内存之间的数据传输是需要CPU控制的，也就是说如果我们<strong>读取磁盘文件到内存中，数据要经过CPU储存转发，这种方式成为PIO</strong>。这种方式是不合理的，需要大量的CPU时间来读取文件，照成文件访问时系统几乎停止响应。</li><li>DMA：<strong>DMA（直接内存访问，Direct Memory Access），不经过CPU而直接进行磁盘和内存（内核空间）的数据交换</strong>。在DMA的模式下，CPU只需要向DMA控制器下达指令，让DMA控制器来处理数据和传达即可，DMA控制器通过系统总线来传输数据，传送完毕再通知CPU，这样就在很大程度上降低了CPU占有率，大大节省了系统资源，而它的传输速度与PIO的差异并不是十分明显，因为这主要取决于慢速设备的速度。</li></ul>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;慢速IO设备和内存之间的数据传输方式有下面两种：&quot;&gt;&lt;a href=&quot;#慢速IO设备和内存之间的数据传输方式有下面两种：&quot; class=&quot;headerlink&quot; title=&quot;慢速IO设备和内存之间的数据传输方式有下面两种：&quot;&gt;&lt;/a&gt;慢速IO设备和内存之间的数据
+      
     
     </summary>
     
     
+    
+      <category term="IO模型" scheme="https://liudong-code.github.io/tags/IO%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
