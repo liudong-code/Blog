@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-28T03:54:57.586Z</updated>
+  <updated>2020-02-28T08:27:25.684Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://liudong-code.github.io/2020/02/28/IO%E8%AE%BF%E9%97%AE%E6%96%B9%E5%BC%8F/"/>
     <id>https://liudong-code.github.io/2020/02/28/IO%E8%AE%BF%E9%97%AE%E6%96%B9%E5%BC%8F/</id>
     <published>2020-02-28T03:50:23.000Z</published>
-    <updated>2020-02-28T03:54:57.586Z</updated>
+    <updated>2020-02-28T08:27:25.684Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="磁盘IO"><a href="#磁盘IO" class="headerlink" title="磁盘IO"></a>磁盘IO</h3><p>​        当应用程序调用read接口时，操作系统检查在内核的高速缓存有没有需要的数据，如果已经缓存了，那么就直接从 缓存中返回，如果没有，则从磁盘中读取，然后缓存在操作系统的缓存中。<br>​        当应用程序调用write接口时，将数据从用户地址空间复制到内核地址空间的缓存中，这时对用户程序来说，写操作已 经完成，至于什么时候再写到磁盘中，由操作系统决定，除非显示调用了sync同步命令。</p><h3 id="网络IO"><a href="#网络IO" class="headerlink" title="网络IO"></a>网络IO</h3><p>​    1）操作系统将数据从磁盘复制到操作系统内核的页缓存中</p><p>​    2）应用将数据从内核缓存复制到应用的缓存中 </p><p>​    3）应用 将数据写回内核的Socket缓存中</p><p>​    4）操作系统将数据从Socket缓存区复制到网卡缓存，然后将其通过网络发出</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是图</span><br></pre></td></tr></table></figure><p>1、当调用read系统调用时，通过DMA（Direct Memory Access）将数据copy到内核模式 </p><p>2、然后由CPU控制将内 核模式数据copy到用户模式下的 buffer中 </p><p>3、read调用完成后，write调用首先将用户模式下 buffer中的数据copy到内核模式下的socket buffer中 </p><p>4、最后通过DMA copy将内核模式下的socket buffer中的数据copy到网卡设备中传送。</p><p>图待补…</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="磁盘IO"><a href="#磁盘IO" class="headerlink" title="磁盘IO"></a>磁盘IO</h3><p>​        当应用程序调用read接口时，操作系统检查在内核的高速缓存有没有需要的数据，如果已经缓存了，那么就直接从 缓存中返回，如果没有，则从磁盘中读取，然后缓存在操作系统的缓存中。<br>​        当应用程序调用write接口时，将数据从用户地址空间复制到内核地址空间的缓存中，这时对用户程序来说，写操作已 经完成，至于什么时候再写到磁盘中，由操作系统决定，除非显示调用了sync同步命令。</p><h3 id="网络IO"><a href="#网络IO" class="headerlink" title="网络IO"></a>网络IO</h3><p>​    1）操作系统将数据从磁盘复制到操作系统内核的页缓存中</p><p>​    2）应用将数据从内核缓存复制到应用的缓存中 </p><p>​    3）应用 将数据写回内核的Socket缓存中</p><p>​    4）操作系统将数据从Socket缓存区复制到网卡缓存，然后将其通过网络发出</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是图，图待补...</span><br></pre></td></tr></table></figure><p>1、当调用read系统调用时，通过DMA（Direct Memory Access）将数据copy到内核模式 </p><p>2、然后由CPU控制将内 核模式数据copy到用户模式下的 buffer中 </p><p>3、read调用完成后，write调用首先将用户模式下 buffer中的数据copy到内核模式下的socket buffer中 </p><p>4、最后通过DMA copy将内核模式下的socket buffer中的数据copy到网卡设备中传送。</p><h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><ul><li>磁盘IO主要的延时是由（以15000rpm硬盘为例）： 机械转动延时（机械磁盘的主要性能瓶颈，平均为2ms） + 寻址延时（2~3ms） + 块传输延时（一般4k每块，40m/s的传输速度，延时一般为0.1ms) 决定。（平均为5ms）</li><li>网络IO主要延是由： 服务器响应延时 + 带宽限制 + 网络延时 + 跳转路由延时 + 本地接收延时 决定。（一般为几十到几千毫秒，受环境干扰极大）<br>所以两者一般来说网络IO延时要大于磁盘IO的延时。</li></ul>]]></content>
     
     <summary type="html">
     
