@@ -100,7 +100,7 @@
     <link href="https://liudong-code.github.io/2020/02/29/%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F/"/>
     <id>https://liudong-code.github.io/2020/02/29/%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F/</id>
     <published>2020-02-29T10:42:07.000Z</published>
-    <updated>2020-02-29T10:45:36.276Z</updated>
+    <updated>2020-02-29T11:24:29.516Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        LocalDate localDate = LocalDate.now();</span><br><span class="line">        String date = localDate.format(dateTimeFormatter);</span><br><span class="line">        System.out.println(<span class="string">"date:"</span>+date)；</span><br></pre></td></tr></table></figure><p> 补充:java的时间日期API一直以来都是被诟病的东西,为了解决这一问题,java8中引入了新的时间日期API,其中包括LocalDate,LocalTime,LocalDate,LocalDateTime,Clock,Instant等类,这些的类的设计都使用了不变模式,因此是线程安全的设计.</p><p>原文链接：<a href="https://blog.csdn.net/riju4713/article/details/88220120" target="_blank" rel="noopener">https://blog.csdn.net/riju4713/article/details/88220120</a></p>]]></content>
     
@@ -115,7 +115,7 @@
     
     
     
-      <category term="Java" scheme="https://liudong-code.github.io/tags/Java/"/>
+      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
   </entry>
   
