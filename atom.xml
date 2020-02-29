@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-29T11:05:32.069Z</updated>
+  <updated>2020-02-29T11:11:28.590Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java中的异常链</title>
+    <link href="https://liudong-code.github.io/2020/02/29/java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E9%93%BE/"/>
+    <id>https://liudong-code.github.io/2020/02/29/java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E9%93%BE/</id>
+    <published>2020-02-29T11:07:08.000Z</published>
+    <updated>2020-02-29T11:11:28.590Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>​        把捕获的异常包装成一个新的异常，在新的异常中添加对新的异常的引用，再把新异常抛出，就像是链式反应一样，这种就叫异常链。 </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   ChainTest ct=<span class="keyword">new</span> ChainTest();<span class="comment">//创建chainTest实例</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">     ct.test2();    </span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">  e.printStackTrace();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span><span class="keyword">throws</span> DrunkException</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">throw</span> <span class="keyword">new</span> DrunkException(<span class="string">"喝车别开酒"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">     test1();</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span> (DrunkException e)&#123;</span><br><span class="line"></span><br><span class="line">       RuntimeException newExc=<span class="keyword">new</span> RuntimeException(<span class="string">"司机一滴酒亲人两行泪"</span>)；<span class="comment">//含参构造器  </span></span><br><span class="line"></span><br><span class="line">       newExc.initCause(e);<span class="comment">//调用newExc的init方法，把捕获的DrunkException传进去</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">throw</span> newExc;<span class="comment">//抛出新异常</span></span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h1&gt;&lt;p&gt;​        把捕获的异常包装成一个新的异常，在新的异常中添加对新的异常的引用，再把新异常抛出，就像是链式反应一样，这种就叫异常链。 &lt;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Java的异常体系</title>
@@ -479,30 +503,6 @@
       
       
         &lt;h3 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;&gt;&lt;/a&gt;String&lt;/h3&gt;&lt;p&gt;  string类是不可变的：创建一个String对象之后，任何对这个对象的改变都会引起一个新的String
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java中的可变对象与不可变对象</title>
-    <link href="https://liudong-code.github.io/2020/02/27/Java%E4%B8%AD%E7%9A%84%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/"/>
-    <id>https://liudong-code.github.io/2020/02/27/Java%E4%B8%AD%E7%9A%84%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/</id>
-    <published>2020-02-27T06:59:24.000Z</published>
-    <updated>2020-02-27T07:09:51.291Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="不可变对象-（Immutable-Objects）"><a href="#不可变对象-（Immutable-Objects）" class="headerlink" title="不可变对象 （Immutable Objects）"></a>不可变对象 （Immutable Objects）</h4><p>​         对象一旦被创建它的状态（对象的数据，也即对象属性值）就不能改变，任何对它的改变都应该产生一个新的对象。 </p><p>​         不可变对象的类即为不可变类(Immutable Class)。JAVA平台类库中包含许多不可变类，如String、基本类型的包装类、BigInteger和BigDecimal等 .</p><h4 id="可变对象-Mutable-Objects"><a href="#可变对象-Mutable-Objects" class="headerlink" title="可变对象(Mutable Objects)"></a>可变对象(Mutable Objects)</h4><p>​         相对于不可变类，可变类创建实例后可以改变其成员变量值，开发中创建的大部分类都属于可变类。 </p><h4 id="编写不可变类"><a href="#编写不可变类" class="headerlink" title="编写不可变类"></a>编写不可变类</h4><p>   1.确保类不能被继承：将类声明为final, 或者使用静态工厂并声明构造器为private </p><ol start="2"><li><p>使用private和final修饰符来修饰该类的属性 </p></li><li><p>如果成员属性为可变对象属性，不要使这些对象改变： </p><p>1）不要提供更改可变对象的方法 </p><p>2）不要共享对可变对象的引用，不要存储传给构造器的外部可变对象的引用。因为引用可变对象的成员变量和外部可变对象的引用指向同一块内存地址，用户可以在不可变类之外通过修改可变对象的值 </p><p>为了保证内部的值不被修改，可以采用深度拷贝的方法来复制一个对象并传入副本的引用来确保类的不可变 </p></li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImmutableDemo</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] myArray;  </span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MyImmutableDemo</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.myArray = array.clone();   </span><br><span class="line"></span><br><span class="line">   &#125;   </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> C. 不要提供任何可以修改对象状态的方法（不仅仅是set方法, 还有任何其它可以改变状态的方法） </p><h4 id="不可变对象的优缺点"><a href="#不可变对象的优缺点" class="headerlink" title="不可变对象的优缺点"></a>不可变对象的优缺点</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><p>* 构造、测试和使用都很简单</p><p>* 不可变对象是线程安全的，在线程之间可以相互共享，不需要利用特殊机制来保证同步问题，因为对象的值无法改变。可以降低并发错误的可能性，因为不需要用一些锁机制等保证内存一致性问题也减少了同步开销。</p><p>* 不可变对象可以被重复使用，可以将它们缓存起来重复使用，就像字符串字面量和整型数字一样。可以使用静态工厂方法来提供类似于valueOf()这样的方法，它可以从缓存中返回一个已经存在的Immutable对象，而不是重新创建一个。</p><h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><p> * 不可变对象最大的缺点就是创建对象的开销，因为每一步操作都会产生一个新的对象,制造大量垃圾，由于他们不能被重用而且对于它们的使用就是”用“然后”扔“，会创造很多的垃圾，给垃圾收集带来很大的麻烦 </p><p>参考：<a href="https://blog.csdn.net/bupa900318/article/details/80696785" target="_blank" rel="noopener">https://blog.csdn.net/bupa900318/article/details/80696785</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;不可变对象-（Immutable-Objects）&quot;&gt;&lt;a href=&quot;#不可变对象-（Immutable-Objects）&quot; class=&quot;headerlink&quot; title=&quot;不可变对象 （Immutable Objects）&quot;&gt;&lt;/a&gt;不可变对象 （Immu
       
     
     </summary>
