@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-29T10:45:36.276Z</updated>
+  <updated>2020-02-29T11:05:32.069Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java的异常体系</title>
+    <link href="https://liudong-code.github.io/2020/02/29/Java%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/"/>
+    <id>https://liudong-code.github.io/2020/02/29/Java%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/</id>
+    <published>2020-02-29T10:54:18.000Z</published>
+    <updated>2020-02-29T11:05:32.069Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="java中异常的体系结构图解："><a href="#java中异常的体系结构图解：" class="headerlink" title="java中异常的体系结构图解："></a>java中异常的体系结构图解：</h3><p><img src="/liudong-code.github.io/2020/02/29/Java%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/yichang.png" alt></p><p>​        java中的Exception类的子类不仅仅只是像上图所示只包含IOException和RuntimeException这两大类，事实上Exception的子类很多很多，主要可概括为：运行时异常与非运行时异常。 </p><h3 id="java异常体系结构"><a href="#java异常体系结构" class="headerlink" title="java异常体系结构"></a><strong>java异常体系结构</strong></h3><p>​        Thorwable类（表示可抛出）是所有异常和错误的超类，两个直接子类为Error和Exception，分别表示错误和异常。其中异常类Exception又分为运行时异常(RuntimeException)和非运行时异常， 这两种异常有很大的区别，也称之为不检查异常（Unchecked Exception）和检查异常（Checked Exception）。下面将详细讲述这些异常之间的区别与联系：</p><p>1、Error与Exception<br>         Error是程序无法处理的错误，它是由JVM产生和抛出的，比如OutOfMemoryError、ThreadDeath等。这些异常发生时，Java虚拟机（JVM）一般会选择线程终止。<br>         Exception是程序本身可以处理的异常，这种异常分两大类运行时异常和非运行时异常。程序中应当尽可能去处理这些异常。<br>2、运行时异常和非运行时异常<br>         运行时异常都是RuntimeException类及其子类异常，如NullPointerException、IndexOutOfBoundsException等，这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。<br>         非运行时异常是RuntimeException以外的异常，类型上都属于Exception类及其子类。从程序语法角度讲是必须进行处理的异常，如果不处理，程序就不能编译通过。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</p><h3 id="异常的捕获和处理"><a href="#异常的捕获和处理" class="headerlink" title="异常的捕获和处理"></a><strong>异常的捕获和处理</strong></h3><h4 id="try、catch、finally"><a href="#try、catch、finally" class="headerlink" title="try、catch、finally"></a>try、catch、finally</h4><p>  第一：try、catch、finally三个语句块均不能单独使用，三者可以组成 try…catch…finally、try…catch、try…finally三种结构，catch语句可以有一个或多个，finally语句最多一个。<br>  第二：try、catch、finally三个代码块中变量的作用域为代码块内部，分别独立而不能相互访问。如果要在三个块中都可以访问，则需要将变量定义到这些块的外面。<br>  第三：多个catch块时候，最多只会匹配其中一个异常类且只会执行该catch块代码，而不会再执行其它的catch块，且匹配catch语句的顺序为从上到下，也可能所有的catch都没执行。<br>   第四：先Catch子类异常再Catch父类异常。 </p><h4 id="throw、throws关键字"><a href="#throw、throws关键字" class="headerlink" title="throw、throws关键字"></a>throw、throws关键字</h4><pre><code>throw关键字是用于方法体内部，用来抛出一个Throwable类型的异常。如果抛出了检查异常，则还应该在方法头部声明方法可能抛出的异常类型。该方法的调用者也必须检查处理抛出的异常。如果所有方法都层层上抛获取的异常，最终JVM会进行处理，处理也很简单，就是打印异常消息和堆栈信息。throw关键字用法如下： </code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception  </span>&#123;  </span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"方法test中的Exception"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;java中异常的体系结构图解：&quot;&gt;&lt;a href=&quot;#java中异常的体系结构图解：&quot; class=&quot;headerlink&quot; title=&quot;java中异常的体系结构图解：&quot;&gt;&lt;/a&gt;java中异常的体系结构图解：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/liudong
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>如何格式化日期</title>
@@ -479,30 +503,6 @@
       
       
         &lt;h4 id=&quot;不可变对象-（Immutable-Objects）&quot;&gt;&lt;a href=&quot;#不可变对象-（Immutable-Objects）&quot; class=&quot;headerlink&quot; title=&quot;不可变对象 （Immutable Objects）&quot;&gt;&lt;/a&gt;不可变对象 （Immu
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>接口和抽象类的区别</title>
-    <link href="https://liudong-code.github.io/2020/02/27/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://liudong-code.github.io/2020/02/27/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
-    <published>2020-02-27T06:06:01.000Z</published>
-    <updated>2020-02-27T07:43:41.584Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span></span><br></pre></td></tr></table></figure><p>​        抽象类必须用abstract 修饰，子类必须实现抽象类中的抽象方法，如果有方法未实现，那么子类的该方法也要用abstract 修饰。</p><p>​        默认的权限修饰符是：public，也可以是procted.如果是private的话，子类无法继承。</p><p>​        抽象类无法创建对象。</p><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span></span></span><br></pre></td></tr></table></figure><p>​        接口中的变量隐式的使用Public static final 修饰，也要给出初始值</p><p>​        接口中的方法隐式的使用public abstract 修饰，只能是public  修饰。</p><p>​        接口中的方法默认的不能有实现（JDK1.8可以有默认实现）。</p><h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ol><li>抽象类只能继承一次，但是可以有多个接口。</li><li>继承于抽象类或者接口的类，必须实现其中的所有方法，抽象类中的为实现的抽象方法，子类也需要定义为抽象类。</li><li>抽象类可以有非抽象方法。</li><li>接口的变量必须由public static final 修饰，并给出初始值，所以其实现类不能重新定义，也不能改变其值。</li><li>接口的方法默认是public abstract ，不能是static，抽象类中可以有static方法。</li><li>接口的方法也不允许子类覆写。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
       
     
     </summary>
