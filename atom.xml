@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-29T10:38:33.433Z</updated>
+  <updated>2020-02-29T10:45:36.276Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何格式化日期</title>
+    <link href="https://liudong-code.github.io/2020/02/29/%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F/"/>
+    <id>https://liudong-code.github.io/2020/02/29/%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F/</id>
+    <published>2020-02-29T10:42:07.000Z</published>
+    <updated>2020-02-29T10:45:36.276Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        LocalDate localDate = LocalDate.now();</span><br><span class="line">        String date = localDate.format(dateTimeFormatter);</span><br><span class="line">        System.out.println(<span class="string">"date:"</span>+date)；</span><br></pre></td></tr></table></figure><p> 补充:java的时间日期API一直以来都是被诟病的东西,为了解决这一问题,java8中引入了新的时间日期API,其中包括LocalDate,LocalTime,LocalDate,LocalDateTime,Clock,Instant等类,这些的类的设计都使用了不变模式,因此是线程安全的设计.</p><p>原文链接：<a href="https://blog.csdn.net/riju4713/article/details/88220120" target="_blank" rel="noopener">https://blog.csdn.net/riju4713/article/details/88220120</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java" scheme="https://liudong-code.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>静态属性和静态方法是否可以被继承？是否可以被重写？以及原因？</title>
@@ -479,32 +503,6 @@
       
       
         &lt;h3 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>抽象类的意义</title>
-    <link href="https://liudong-code.github.io/2020/02/27/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%84%8F%E4%B9%89/"/>
-    <id>https://liudong-code.github.io/2020/02/27/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E6%84%8F%E4%B9%89/</id>
-    <published>2020-02-27T05:53:43.000Z</published>
-    <updated>2020-02-27T06:07:43.236Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="抽象类的意义"><a href="#抽象类的意义" class="headerlink" title="抽象类的意义"></a>抽象类的意义</h3><p>最主要的：对代码的维护和重用。</p><p>关键字</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span></span><br></pre></td></tr></table></figure><p> <strong>1.因为抽象类不能实例化对象，所以必须要有子类来实现它之后才能使用。这样就可以把一些具有相同属性和方法的组件进行抽象，这样更有利于代码和程序的维护</strong> </p><p> <strong>2.当又有一个具有相似的组件产生时，只需要实现该抽象类就可以获得该抽象类的那些属性和方法。</strong>  </p><p>​    实际写代码的过程中，如果想要对某一个接口进行默认实现，并且不希望在该实现类 上创建实例，那么抽象类是一个不错地选择。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;抽象类的意义&quot;&gt;&lt;a href=&quot;#抽象类的意义&quot; class=&quot;headerlink&quot; title=&quot;抽象类的意义&quot;&gt;&lt;/a&gt;抽象类的意义&lt;/h3&gt;&lt;p&gt;最主要的：对代码的维护和重用。&lt;/p&gt;
-&lt;p&gt;关键字&lt;/p&gt;
-&lt;figure class=&quot;highligh
       
     
     </summary>
