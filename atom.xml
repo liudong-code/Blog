@@ -6,7 +6,7 @@
   <link href="/liudong-code.github.io/atom.xml" rel="self"/>
   
   <link href="https://liudong-code.github.io/"/>
-  <updated>2020-02-29T11:11:28.590Z</updated>
+  <updated>2020-02-29T11:18:05.497Z</updated>
   <id>https://liudong-code.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>throw和throws的区别</title>
+    <link href="https://liudong-code.github.io/2020/02/29/throw%E5%92%8Cthrows%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://liudong-code.github.io/2020/02/29/throw%E5%92%8Cthrows%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2020-02-29T11:12:48.000Z</published>
+    <updated>2020-02-29T11:18:05.497Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>抛出异常有三种形式</strong></p><ul><li>throw</li><li>throws</li><li>系统自动抛异常</li></ul><p><strong>一、系统自动抛异常</strong></p><p>当程序语句出现一些逻辑错误、主义错误或类型转换错误时，系统会自动抛出异常：（举个栗子）</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">5</span>, b =<span class="number">0</span>; </span><br><span class="line">    System.out.println(<span class="number">5</span>/b);   <span class="comment">// 此处系统会自动抛出ArithmeticException异常</span></span><br><span class="line">    <span class="comment">//function(); </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>二、throw</strong></p><p>throw是语句抛出一个异常，一般是在代码块的内部，当程序出现某种逻辑错误时由程序员主动抛出某种特定类型的异常</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">    String s = <span class="string">"abc"</span>; </span><br><span class="line">    <span class="keyword">if</span>(s.equals(<span class="string">"abc"</span>)) &#123; </span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">      System.out.println(s); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//function(); </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>  <strong>运行时，系统会抛出如下异常：</strong> </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">"main"</span> java.lang.NumberFormatException at......</span><br></pre></td></tr></table></figure><p><strong>三、throws</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">当某个方法可能会抛出某种异常时用于<span class="keyword">throws</span> 声明可能抛出的异常，然后交给上层调用它的方法程序处理</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">testThrows</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> <span class="keyword">throws</span> NumberFormatException </span>&#123; </span><br><span class="line">String s = <span class="string">"abc"</span>; </span><br><span class="line">System.out.println(Double.parseDouble(s)); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">function(); </span><br><span class="line">&#125; <span class="keyword">catch</span> (NumberFormatException e) &#123; </span><br><span class="line">System.err.println(<span class="string">"非数据类型不能强制类型转换。"</span>); </span><br><span class="line"><span class="comment">//e.printStackTrace(); </span></span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p> 四、throw与throws的比较</p><p>throws出现在方法函数头；而throw出现在函数体。<br>throws表示出现异常的一种可能性，并不一定会发生这些异常；throw则是抛出了异常，执行throw则一定抛出了某种异常对象。<br>两者都是消极处理异常的方式（这里的消极并不是说这种方式不好），只是抛出或者可能抛出异常，但是不会由函数去处理异常，真正的处理异常由函数的上层调用处理。</p><p>五、编程习惯：</p><p>在写程序时，对可能会出现异常的部分通常要用try{…}catch{…}去捕捉它并对它进行处理；<br>用try{…}catch{…}捕捉了异常之后一定要对在catch{…}中对其进行处理，那怕是最简单的一句输出语句，或栈输入e.printStackTrace();用try{…}catch{…}捕捉了异常之后一定要对在catch{…}中对其进行处理，那怕是最简单的一句输出语句，或栈输入e.printStackTrace();<br>如果是捕捉IO输入输出流中的异常，一定要在try{…}catch{…}后加finally{…}把输入输出流关闭；如果是捕捉IO输入输出流中的异常，一定要在try{…}catch{…}后加finally{…}把输入输出流关闭；<br>如果在函数体内用throw抛出了某种异常，最好要在函数名中加throws抛异常声明，然后交给调用它的上层函数进行处理。如果在函数体内用throw抛出了某种异常，最好要在函数名中加throws抛异常声明，然后交给调用它的上层函数进行处理</p><p>原文链接：<a href="https://blog.csdn.net/xsj_blog/article/details/83030450" target="_blank" rel="noopener">https://blog.csdn.net/xsj_blog/article/details/83030450</a></p><p>原文链接：<a href="https://blog.csdn.net/xsj_blog/article/details/83030450" target="_blank" rel="noopener">https://blog.csdn.net/xsj_blog/article/details/83030450</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;抛出异常有三种形式&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;throw&lt;/li&gt;
+&lt;li&gt;throws&lt;/li&gt;
+&lt;li&gt;系统自动抛异常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;一、系统自动抛异常&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当程序语句出现一些逻
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>java中的异常链</title>
@@ -479,30 +510,6 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;extends&lt;/code&gt;：让一个类继承另外一个类；&lt;/li&gt;
 &lt;li&gt;&lt;co
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Java基础知识" scheme="https://liudong-code.github.io/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>String，Stringbuffer，StringBuilder的区别</title>
-    <link href="https://liudong-code.github.io/2020/02/27/String%EF%BC%8CStringbuffer%EF%BC%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://liudong-code.github.io/2020/02/27/String%EF%BC%8CStringbuffer%EF%BC%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
-    <published>2020-02-27T07:16:10.000Z</published>
-    <updated>2020-02-27T07:19:07.092Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>  string类是不可变的：创建一个String对象之后，任何对这个对象的改变都会引起一个新的String对象生成。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str =<span class="string">"abc"</span>;</span><br><span class="line"></span><br><span class="line">str = str +<span class="string">"def"</span>;<span class="comment">//这一步jvm会再次创建一个String对象</span></span><br></pre></td></tr></table></figure><p>第二次其实jvm又生成了一个String类，而不是直接覆盖原来的”abc”，因此我们说String类是不可改变类。这一种特性会带来一个问题，每次拼接都要创建都要创建一次对象，当我们要拼接大量字符串的时候，效率会变得非常非常慢。</p><h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a><strong>StringBuffer</strong></h3><p> StringBuffer 不同于String的是，stringbuffer 是可变的，</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb =<span class="keyword">new</span> StringBuffer(<span class="string">"abc"</span>);</span><br><span class="line"></span><br><span class="line"> sb.append(<span class="string">"efg"</span>);<span class="comment">//并没有创建一个新的对象</span></span><br></pre></td></tr></table></figure><p>这里第二步并没有产生一个新的对象，而是在原来的基础上追加字符串，这种方式在拼接字符串的时候效率肯定比String要高得多。</p><h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>StringBuffer和StringBuilder类的区别也是如此，他们的原理和操作基本相同，区别在于StringBuffer支持并发操作，线性安全的，适 合多线程中使用。StringBuilder不支持并发操作，线性不安全的，不适合多线程中使用。新引入的StringBuilder类不是线程安全的，但其在单线程中的性能比StringBuffer高。</p><h3 id="total"><a href="#total" class="headerlink" title="total:"></a>total:</h3><p>1.如果要操作少量的数据用 String</p><p>2.单线程操作字符串缓冲区下操作大量数据用StringBuilder</p><p>3.多线程操作字符串缓冲区下操作大量数据用StringBuffer</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;&gt;&lt;/a&gt;String&lt;/h3&gt;&lt;p&gt;  string类是不可变的：创建一个String对象之后，任何对这个对象的改变都会引起一个新的String
       
     
     </summary>
