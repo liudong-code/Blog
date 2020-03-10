@@ -6,7 +6,7 @@
 </ul>
 <p>为了保持JDK的独立性和完整性，在JDK的安装过程中，JRE也是安装的一部分。所以，在JDK的安装目录下有一个名为jre的目录，用于存放JRE文件。而JVM是JRE的一部分。JVM有自己完善的硬件架构，如处理器、堆栈、寄存器等，还具有相应的指令系统。Java语言最重要的特点就是跨平台运行。使用JVM就是为了支持与操作系统无关，实现跨平台。</p>
 <p> 下面这张图是java程序的一个总执行流程： </p>
-<p><img src="/liudong-code.github.io/2020/03/10/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%5Cjvm1.png" alt></p>
+<p><img src="/liudong-code.github.io/2020/03/10/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/jvm1.png" alt></p>
 <h1 id="二、类加载机制"><a href="#二、类加载机制" class="headerlink" title="二、类加载机制"></a>二、类加载机制</h1><p> 从上图可以看到，我们写的源程序通过编译后生成的class文件，在运行的时候首先会通过类加载器系统。这边来简要说一下类加载机制。 </p>
 <p><img src="/liudong-code.github.io/2020/03/10/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%5Cjvm2.png" alt></p>
 <p> 上面是一个类从最初加载到最后卸载的整个流程。我们对其中几个过程进行梳理。 </p>
